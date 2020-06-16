@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+    /> 
+    <title>Summer Programs</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 50%;
+        width: 50%; 
+        position: absolute; 
+        right: 0; 
+        
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color:#23c1f1; 
+      }
+
+       h1 {
+        color: #fff; 
+        font-family: 'Sofia';font-size: 50px;
+        text-align: center;
+        }
+
+      p1 {
+        font-size: 25px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1 class="animate__animated animate__slideInDown"> Summer Programs</h1>
+    <div id="map"></div>
+
+    <p1>Excited for the Summer? We are too! Explore this map of opportunities 
+      available all around the country and world to see where life takes you 
+      next. And don't worry, these programs offer various forms of assitance 
+      so you can keep learning and keep exploring! 
+    </p1>
+
+
+    <script>
+
+      function initMap() {
+        var cords = {lat: 37.0902, lng: -95.7129};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: cords
+        });
+
+        addMarker(
+          {coords:{lat:34.0224, lng:-118.2851}, 
+          content: 'USC Bovard Scholars Program, LA, CA'
+        }); 
+        addMarker(
+          {coords:{lat:34.0689, lng:-118.4452}, 
+          content: 'UCLA Smash Program, LA, CA'
+        }); 
+        addMarker(
+          {coords:{lat:34.0522, lng:-118.2437}, 
+          content: 'Minds Matter of Los Angeles'
+        });
+        addMarker(
+          {coords:{lat:40.7128, lng:-74.0060}, 
+          content: 'Bridge to Enter Advanced Mathematics, NY'
+        });
+        addMarker(
+          {coords:{lat:29.6985, lng:-95.4391}, 
+          content: 'Camp STREAM, TX'
+        });
+
+
+        function addMarker(props){
+          var marker = new google.maps.Marker({
+          position: props.coords,
+          map: map,
+          });
+
+          if(props.content){
+            var infowindow = new google.maps.InfoWindow({
+            content: props.content
+            });
+
+            marker.addListener('click', function() {
+            infowindow.open(map, marker);
+            });
+          }
+
+        }
+
+      }
+    </script>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBF64PPzSi6RuoREhmyYL_kkBz_PAoB-FM&callback=initMap">
+    </script>
+  </body>
+</html>
